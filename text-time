@@ -7,9 +7,10 @@ function limit_words($text, $wordscount) {
 	echo $limited_text;
 }
 
-// example: limit post title length to 11 words
-limit_words(get_the_title(), 11)
-// reference: http://codex.wordpress.org/Function_Reference/wp_trim_words
+/*
+example: limit post title length to 11 words  limit_words(get_the_title(), 11)
+reference: http://codex.wordpress.org/Function_Reference/wp_trim_words
+**/
 
 /*--------------------------------------------------------------
 # Excerpt: Change excerpt length in words (ecodomisi)
@@ -56,8 +57,11 @@ function sec2hms ($sec, $padHours = true) {
     return $hms;
 }
 
-// example: store time (like video duration) as seconds and display it in readable form hh:mm:ss
-// reference:  http://www.laughing-buddha.net/php/sec2hms
+/* 
+usage: store time (like video duration) as seconds and display it in readable form hh:mm:ss
+example: echo sec2hms - (get_post_meta($post->ID,'videolength',true))
+reference:  http://www.laughing-buddha.net/php/sec2hms 
+**/
 
 /*--------------------------------------------------------------
 # Time: Convert Unix to Seconds (fitya)
@@ -71,4 +75,7 @@ function sec2hms ($sec, $padHours = true) {
     return $start->format('U');
 }
 
-// example: get video length from youtube video (stored in unix) and save it to a field as seconds
+/*
+usage: get video length from youtube video (stored in unix) and save it to a field as seconds
+example: inside function that saves youtube api video data to custom fields - $new_videolength_value = covsecs($yt_duration);
+**/
