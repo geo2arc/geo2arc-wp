@@ -64,6 +64,7 @@ $(document).on('facetwp-loaded', function() {
 					window.fwp_is_paging = true;
 					FWP.extras.per_page = (window.fwp_page * window.fwp_default_per_page);
 					FWP.soft_refresh = true;
+					$('#loaded').hide();
 					$('#loading').show();
 					setInterval(function() {$('#loading').hide();}, 4000);
 					FWP.refresh();
