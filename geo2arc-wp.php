@@ -1,3 +1,4 @@
+<?php
 /*
 Plugin Name:       geo2arc wp snipplets
 Plugin URI:        https://github.com/geo2arc/geo2arc-wp
@@ -16,8 +17,8 @@ GitHub Branch:     master
 # Text: Limit text length by number of words (fitya)
 --------------------------------------------------------------*/
 
-function limit_words($text, $wordscount) {
-	$limited_text = wp_trim_words( $text, $num_words = $wordscount, $more = ' ...' ); 
+function limit_words($text, $wordscount, $moretext) {
+	$limited_text = wp_trim_words( $text, $num_words = $wordscount, $more = $moretext ); 
 	echo $limited_text;
 }
 
