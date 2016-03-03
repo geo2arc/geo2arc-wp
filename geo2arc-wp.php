@@ -3,7 +3,7 @@
 Plugin Name:       geo2arc wp snipplets
 Plugin URI:        https://github.com/geo2arc/geo2arc-wp
 Description:       Wordpress snipplets and functions
-Version:           1.0.0
+Version:           1.0.1
 Author:            Georgia Georgala
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,6 +12,23 @@ Text Domain:       geo2arc-wp
 GitHub Plugin URI: https://github.com/geo2arc/geo2arc-wp
 GitHub Branch:     master
 */
+
+/*--------------------------------------------------------------
+# Plugin: Register Scripts & Styles
+--------------------------------------------------------------*/
+
+function geo2arc_register_scripts() {
+	if (!is_admin()) {
+		wp_register_script('geo2arc_script', plugins_url('js/script.js', __FILE__));
+		wp_enqueue_script('geo2arc_script');
+	}
+}
+function geo2arc_register_styles() {
+	wp_register_style('geo2arc_style', plugins_url('css/style.css', __FILE__));
+	wp_enqueue_style('geo2arc_style');
+}
+add_action('wp_print_scripts', 'geo2arc_register_scripts');
+add_action('wp_print_styles', 'geo2arc_register_styles');
 
 /*--------------------------------------------------------------
 # Text: Limit text length by number of words (fitya)
