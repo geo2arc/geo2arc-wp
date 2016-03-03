@@ -3,7 +3,7 @@
 Plugin Name:       geo2arc wp snipplets
 Plugin URI:        https://github.com/geo2arc/geo2arc-wp
 Description:       Wordpress snipplets and functions
-Version:           1.0.0
+Version:           1.0.1
 Author:            Georgia Georgala
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -23,7 +23,7 @@ function text_limit_by_words($text, $wordscount, $moretext) {
 }
 
 /*
-example: limit post title length to 11 words  limit_words(get_the_title(), 11)
+example: limit post title length to 11 words with ...  limit_words(get_the_title(), 11, ' ...')
 reference: http://codex.wordpress.org/Function_Reference/wp_trim_words
 **/
 
@@ -94,3 +94,24 @@ reference:  http://www.laughing-buddha.net/php/sec2hms
 usage: get video length from youtube video (stored in unix) and save it to a field as seconds
 example: inside function that saves youtube api video data to custom fields - $new_videolength_value = covsecs($yt_duration);
 **/
+
+/*--------------------------------------------------------------
+# Filters: FacetWP Sort Panel (fitya)
+--------------------------------------------------------------*/
+
+function filters_sort_panel() {
+	ob_start();
+	echo '<div id="start-browsing" style="margin-top:-150px; margin-bottom:180px;"></div>
+	<div id="sort-panel" class="collection white blue-grey-text text-darken-1">
+		<div class="collection-item grey lighten-3">';
+		echo do_shortcode( '[facetwp counts="true"]' );
+		echo '<span> WORKOUT VIDEOS  &nbsp; &nbsp;</span>';
+		echo do_shortcode( '[facetwp sort="true"]' );
+		echo '&nbsp; &nbsp; &nbsp;';
+		echo do_shortcode( '[facetwp selections="true"]' );
+	echo '</div></div>';
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
+}
+add_shortcode( 'filters-sort-panel', 'filters_sort_panel' );
