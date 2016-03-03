@@ -3,7 +3,7 @@
 Plugin Name:       geo2arc wp snipplets
 Plugin URI:        https://github.com/geo2arc/geo2arc-wp
 Description:       Wordpress snipplets and functions
-Version:           1.0.1
+Version:           1.0.0
 Author:            Georgia Georgala
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
