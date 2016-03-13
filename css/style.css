@@ -27,6 +27,18 @@
 	text-align: center;
 }
 
+/* titles */
+
+.facet-title {
+	position: relative;
+	margin: 8px 0 2px 0;
+    color: #404040;
+    text-transform: uppercase;
+    border-bottom: 1px solid #D8d8d8;
+    font-weight: 400;
+    height: 25px;
+}
+
 
 /* filters */
 
@@ -41,7 +53,7 @@
 	max-width: 96%;
 }
 
-/* checkbox */
+/* Checkbox */
 
 .facetwp-type-checkboxes:not(.facetwp-facet-type) {
 	margin-bottom: 0 !important;
@@ -78,17 +90,19 @@
 	display: block;
 }
 
+.facet-dropdown .facetwp-type-checkboxes > .facetwp-depth {
+	margin-left: 0;
+}
 
-/* titles */
-
-.facet-title {
-	position: relative;
-	margin: 8px 0 2px 0;
-    color: #404040;
+/* checkbox hierarchy */
+.facetwp-checkbox.has-children {
+	display: block !important;
+    font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 1px solid #D8d8d8;
-    font-weight: 400;
-    height: 25px;
+}
+.facetwp-depth .facetwp-depth {
+	border-left: 1px dotted #adadad;
+    padding-left: 5px;
 }
 
 
