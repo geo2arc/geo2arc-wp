@@ -45,24 +45,6 @@ reference: http://codex.wordpress.org/Function_Reference/wp_trim_words
 **/
 
 /*--------------------------------------------------------------
-# Excerpt: Change excerpt length in words (ecodomisi)
---------------------------------------------------------------*/
-
-function custom_excerpt_length( $length ) {
-	return 15;
-}
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-
-/*--------------------------------------------------------------
-# Excerpt: Change excerpt "more" text (ecodomisi)
---------------------------------------------------------------*/
-
-function new_excerpt_more( $more ) {
-	return '...';
-}
-add_filter('excerpt_more', 'new_excerpt_more');
-
-/*--------------------------------------------------------------
 # Time: Convert Seconds to Time  hh:mm:ss (fitya)
 --------------------------------------------------------------*/
 
