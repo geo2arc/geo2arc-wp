@@ -1,7 +1,8 @@
 jQuery(document).ready(function($) {
+	
 
 /*--------------------------------------------------------------
-# Filters: FacetWP Filters Accordion Menu (fitya)
+# Filters: FacetWP Filters Accordion Menu (fitya, tgc)
 --------------------------------------------------------------*/
 
 // prevent page from jumping to top from  # href link
@@ -12,7 +13,30 @@ $('.menu-top-menu-container li.menu-item-has-children > a').click(function(e) {
 // remove link from menu items that have children
 $(".menu-top-menu-container li.menu-item-has-children > a").attr("href", "#");
 
-//  open / close menu items
+//  open / close menu items (thegiftcentral)
+
+$(".facetwp-facet-product_categories > .facetwp-checkbox").click(function(e) {
+	e.preventDefault();
+	$(this).toggleClass('open');
+		var link = $(this);
+		var closest_ul = link.next(".facetwp-facet-product_categories");
+		var parallel_active_links = closest_ul.find(".active")
+		var closest_li = link.closest('.facetwp-depth');
+		var link_status = closest_li.hasClass("active");
+		var count = 0;
+
+		closest_ul.find(".facetwp-depth").slideUp(function() {
+				if (++count == closest_ul.find(".facetwp-depth").length)
+						parallel_active_links.removeClass("active");
+		});
+
+		if (!link_status) {
+				closest_li.children(".facetwp-depth").slideDown();
+				closest_li.addClass("active");
+		}
+
+})
+
 $(".facet-title").click(function() {
 	$(this).toggleClass('open');
 		var link = $(this);
@@ -33,6 +57,7 @@ $(".facet-title").click(function() {
 		}
 })
 
+
 /*--------------------------------------------------------------
 # Filters: FacetWP Infinite Scroll (fitya)
 --------------------------------------------------------------*/
@@ -50,7 +75,7 @@ $(document).on('facetwp-refresh', function() {
 	window.fwp_is_paging = false;
 });
 
-$(document).on('facetwp-loaded', function() {
+$('body.archive').on('facetwp-loaded', function() {
 	window.fwp_total_rows = FWP.settings.pager.total_rows;
 
 	if (! FWP.loaded) {
