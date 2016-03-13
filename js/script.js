@@ -75,7 +75,7 @@ $(document).on('facetwp-refresh', function() {
 	window.fwp_is_paging = false;
 });
 
-$('body.archive').on('facetwp-loaded', function() {
+$(document).on('facetwp-loaded', function() {
 	window.fwp_total_rows = FWP.settings.pager.total_rows;
 
 	if (! FWP.loaded) {
