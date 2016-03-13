@@ -113,16 +113,16 @@ example: inside function that saves youtube api video data to custom fields - $n
 **/
 
 /*--------------------------------------------------------------
-# Filters: FacetWP Sort Panel (fitya)
+# Filters: FacetWP Sort Panel (fitya, tgc)
 --------------------------------------------------------------*/
 
-function filters_sort_panel() {
+function filters_sort_panel($after_counts, $classes_out, $classes_in) {
 	ob_start();
-	echo '<div id="start-browsing" style="margin-top:-150px; margin-bottom:180px;"></div>
-	<div id="sort-panel" class="collection white blue-grey-text text-darken-1">
-		<div class="collection-item grey lighten-3">';
+	echo '
+	<div id="sort-panel" class="' . $classes_out .'">
+		<div class="' . $classes_in .'">';
 		echo do_shortcode( '[facetwp counts="true"]' );
-		echo '<span> WORKOUT VIDEOS  &nbsp; &nbsp;</span>';
+		echo '<span>' . $after_counts . '  &nbsp; &nbsp;</span>';
 		echo do_shortcode( '[facetwp sort="true"]' );
 		echo '&nbsp; &nbsp; &nbsp;';
 		echo do_shortcode( '[facetwp selections="true"]' );
