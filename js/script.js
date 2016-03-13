@@ -57,6 +57,13 @@ $(".facet-title").click(function() {
 		}
 })
 
+/*--------------------------------------------------------------
+# Filters: FacetWP Checkbox Parent (tgc)
+--------------------------------------------------------------*/
+
+$(document).on('facetwp-loaded', function() {
+	$('.facetwp-depth .facetwp-depth').prev().addClass('has-children');
+});
 
 /*--------------------------------------------------------------
 # Filters: FacetWP Infinite Scroll (fitya)
