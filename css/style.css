@@ -1,6 +1,6 @@
 
 /*--------------------------------------------------------------
-# Filters: FacetWP Filters (fitya)
+# FILTERS: FacetWP Filters (fitya, tgc, ecodomisi, geo2arc)
 --------------------------------------------------------------*/
 
 /* sort panel */
@@ -127,7 +127,7 @@
 /* Checkbox */
 
 .facetwp-type-checkboxes {
-	max-height: none !important;
+	max-height: initial !important;
 }
 
 .facetwp-depth {
