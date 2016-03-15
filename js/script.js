@@ -62,7 +62,7 @@ $(".facet-title").click(function() {
 --------------------------------------------------------------*/
 
 $(document).on('facetwp-loaded', function() {
-	$('.facetwp-depth .facetwp-depth').prev().addClass('has-children');
+	$('.facetwp-depth').prev('.facetwp-checkbox').addClass('has-children');
 });
 
 
