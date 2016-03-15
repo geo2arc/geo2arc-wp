@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 	
 
 /*--------------------------------------------------------------
-# Filters: FacetWP Filters Accordion Menu (fitya, tgc)
+# FILTERS: FacetWP Filters Accordion Menu (fitya, tgc)
 --------------------------------------------------------------*/
 
 // prevent page from jumping to top from  # href link
@@ -58,7 +58,7 @@ $(".facet-title").click(function() {
 })
 
 /*--------------------------------------------------------------
-# Filters: FacetWP Checkbox Parent (tgc)
+# FILTERS: FacetWP Checkbox Parent (tgc)
 --------------------------------------------------------------*/
 
 $(document).on('facetwp-loaded', function() {
@@ -66,51 +66,51 @@ $(document).on('facetwp-loaded', function() {
 });
 
 /*--------------------------------------------------------------
-# Filters: FacetWP Infinite Scroll (fitya)
+FILTERS: Custom Pagination (ecodomisi, tgc)
 --------------------------------------------------------------*/
 
-$('#loaded').hide();
-
-window.fwp_is_paging = false;
-
-$(document).on('facetwp-refresh', function() {
-	if (! window.fwp_is_paging) {
-		window.fwp_page = 1;
-		FWP.extras.per_page = 'default';
-	}
-
-	window.fwp_is_paging = false;
-});
-
-$(document).on('facetwp-loaded', function() {
-	window.fwp_total_rows = FWP.settings.pager.total_rows;
-
-	if (! FWP.loaded) {
-		window.fwp_default_per_page = FWP.settings.pager.per_page;
-
-		$(window).scroll(function() {
-			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-				var rows_loaded = (window.fwp_page * window.fwp_default_per_page);
-				if (rows_loaded < window.fwp_total_rows) {
-					window.fwp_page++;
-					window.fwp_is_paging = true;
-					FWP.extras.per_page = (window.fwp_page * window.fwp_default_per_page);
-					FWP.soft_refresh = true;
-					$('#loaded').hide();
-					$('#loading').show();
-					setInterval(function() {$('#loading').hide();}, 4000);
-					FWP.refresh();
-					
-				} else { $('#loaded').show(); }
-			}
-		});
-	}
-});
+function custom_facetwp_pager( $output, $params ) {
+    $output = '';
+    $page = (int) $params['page'];
+    $total_pages = (int) $params['total_pages'];
+	$output .= '<ul class="uk-pagination page-numbers">';
+    // Only show pagination when > 1 page
+    if ( 1 < $total_pages ) {
+        if ( 1 < $page ) {
+            $output .= '<li><a class="facetwp-page" data-page="' . ( $page - 1 ) . '">&laquo; Previous</a></li>';
+        }
+        if ( 3 < $page ) {
+            $output .= '<li><a class="facetwp-page first-page" data-page="1">1</a></li>';
+            $output .= ' <span class="dots">…</span> ';
+        }
+        for ( $i = 2; $i > 0; $i-- ) {
+            if ( 0 < ( $page - $i ) ) {
+                $output .= '<li><a class="facetwp-page" data-page="' . ($page - $i) . '">' . ($page - $i) . '</a></li>';
+            }
+        }
+        // Current page
+        $output .= '<li class="uk-active"><span class="facetwp-page active current"><a style="padding:0" data-page="' . $page . '">' . $page . '</a></span></li>';
+        for ( $i = 1; $i <= 4; $i++ ) {
+            if ( $total_pages >= ( $page + $i ) ) {
+                $output .= '<li><a class="facetwp-page" data-page="' . ($page + $i) . '">' . ($page + $i) . '</a></li>';
+            }
+        }
+        if ( $total_pages > ( $page + 4 ) ) {
+            $output .= ' <li><span class="dots">…</span></li> ';
+            $output .= '<li><a class="facetwp-page last-page" data-page="' . $total_pages . '">' . $total_pages . '</a></li>';
+        }
+        if ( $page < $total_pages ) {
+            $output .= '<li><a class="facetwp-page" data-page="' . ( $page + 1 ) . '">Next &raquo;</a></li>';
+        }
+    }
+	
+	$output .="</ul>";
+    return $output;
+}
+add_filter( 'facetwp_pager_html', 'custom_facetwp_pager', 10, 2 );
 
 /*
-usage: after content create divs #loading, #loaded style="display:none;"
-reference: https://facetwp.com/infinite-scroll-with-facetwp/
+reference: Custom pagination (functions.php) – https://gist.github.com/mgibbs189/9732174
 **/
-
 
 }); //jQuery
