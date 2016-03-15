@@ -3,7 +3,7 @@
 Plugin Name:       geo2arc wp snipplets
 Plugin URI:        https://github.com/geo2arc/geo2arc-wp
 Description:       Wordpress snipplets and functions
-Version:           1.0.2
+Version:           1.0.3
 Author:            Georgia Georgala
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -98,20 +98,24 @@ example: inside function that saves youtube api video data to custom fields - $n
 # Filters: FacetWP Sort Panel (fitya, tgc)
 --------------------------------------------------------------*/
 
-function filters_sort_panel($after_counts, $classes_out, $classes_in) {
+
+function filters_sort_panel($atts) {	
+	$sc_atts = shortcode_atts( array(
+		'after_counts' => '',
+		'classes_out' => '',
+		'classes_in' => ''
+    ), $atts );
 	ob_start();
-	echo '
-	<div id="sort-panel" class="' . $classes_out .'">
-		<div class="' . $classes_in .'">';
+		echo '<div id="sort-panel" class="' . $sc_atts['classes_out'] . '">';
+		echo  '<div class="' . $sc_atts['classes_in'] . '">';
 		echo do_shortcode( '[facetwp counts="true"]' );
-		echo '<span>' . $after_counts . '  &nbsp; &nbsp;</span>';
+		echo  '<span> &nbsp;' . $sc_atts['after_counts'] . '&nbsp;  &nbsp; &nbsp;</span>';
 		echo do_shortcode( '[facetwp sort="true"]' );
-		echo '&nbsp; &nbsp; &nbsp;';
+		echo  '&nbsp; &nbsp; &nbsp;';
 		echo do_shortcode( '[facetwp selections="true"]' );
-	echo '</div></div>';
-	$output = ob_get_contents();
-	ob_end_clean();
-	return $output;
+	echo   '</div></div>';
+	//return $output;
+	 return ob_get_clean();
 }
 add_shortcode( 'filters-sort-panel', 'filters_sort_panel' );
 
