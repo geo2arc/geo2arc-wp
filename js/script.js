@@ -1,9 +1,7 @@
 jQuery(document).ready(function($) {
 	
 
-/*--------------------------------------------------------------
-# FILTERS: FacetWP Filters Accordion Menu (fitya, tgc)
---------------------------------------------------------------*/
+/*--- # FILTERS: FacetWP Filters Accordion Menu (fitya, tgc) ---*/
 
 // prevent page from jumping to top from  # href link
 $('.menu-top-menu-container li.menu-item-has-children > a').click(function(e) {
@@ -57,14 +55,11 @@ $(".facet-title").click(function() {
 		}
 })
 
-/*--------------------------------------------------------------
-# FILTERS: FacetWP Checkbox Parent (tgc)
---------------------------------------------------------------*/
+/*--- # FILTERS: FacetWP Checkbox Parent (tgc) ----*/
 
 $(document).on('facetwp-loaded', function() {
-	$('.facetwp-depth').prev('.facetwp-checkbox').addClass('has-children');
+	$('.facetwp-depth .facetwp-depth').prev().addClass('has-children');
 });
-
 
 
 }); //jQuery
