@@ -3,7 +3,7 @@
 Plugin Name:       geo2arc wp snipplets
 Plugin URI:        https://github.com/geo2arc/geo2arc-wp
 Description:       Wordpress snipplets and functions
-Version:           1.0.3
+Version:           1.0.31
 Author:            Georgia Georgala
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,9 +13,7 @@ GitHub Plugin URI: https://github.com/geo2arc/geo2arc-wp
 GitHub Branch:     master
 */
 
-/*--------------------------------------------------------------
-# Plugin: Register Scripts & Styles
---------------------------------------------------------------*/
+/*--- # PLUGIN: Register Scripts & Styles ---*/
 
 function geo2arc_register_scripts() {
 	if (!is_admin()) {
@@ -30,9 +28,7 @@ function geo2arc_register_styles() {
 add_action('wp_print_scripts', 'geo2arc_register_scripts');
 add_action('wp_print_styles', 'geo2arc_register_styles');
 
-/*--------------------------------------------------------------
-# Text: Limit text length by number of words (fitya)
---------------------------------------------------------------*/
+/*--- # CONTENT: Limit text length by number of words (fitya) ---*/
 
 function text_limit_by_words($text, $wordscount, $moretext) {
 	$limited_text = wp_trim_words( $text, $num_words = $wordscount, $more = $moretext ); 
@@ -44,9 +40,7 @@ example: limit post title length to 11 words with ...  limit_words(get_the_title
 reference: http://codex.wordpress.org/Function_Reference/wp_trim_words
 **/
 
-/*--------------------------------------------------------------
-# Time: Convert Seconds to Time  hh:mm:ss (fitya)
---------------------------------------------------------------*/
+/*--- # TIME: Convert Seconds to Time  hh:mm:ss (fitya) ---*/
 
 function sec2hms ($sec, $padHours = true) {
     $hms = "";
@@ -77,9 +71,7 @@ example: echo sec2hms - (get_post_meta($post->ID,'videolength',true))
 reference:  http://www.laughing-buddha.net/php/sec2hms 
 **/
 
-/*--------------------------------------------------------------
-# Time: Convert Unix to Seconds (fitya)
---------------------------------------------------------------*/
+/*--- # TIME: Convert Unix to Seconds (fitya) ---*/
 
  function covsecs($youtube_time){
     $start = new DateTime('@0'); // Unix epoch
@@ -94,9 +86,7 @@ usage: get video length from youtube video (stored in unix) and save it to a fie
 example: inside function that saves youtube api video data to custom fields - $new_videolength_value = covsecs($yt_duration);
 **/
 
-/*--------------------------------------------------------------
-# Filters: FacetWP Sort Panel (fitya, tgc)
---------------------------------------------------------------*/
+/*--- # FILTERS: Sort Panel (fitya, tgc) ---*/
 
 
 function filters_sort_panel($atts) {	
@@ -119,9 +109,7 @@ function filters_sort_panel($atts) {
 }
 add_shortcode( 'filters-sort-panel', 'filters_sort_panel' );
 
-/*--------------------------------------------------------------
-FILTERS: Custom Pagination (tgc, ecodomisi ,geo2arc)
---------------------------------------------------------------*/
+/*--- FILTERS: Pagination - Custom (tgc, ecodomisi ,geo2arc) ---*/
 
 function custom_facetwp_pager( $output, $params ) {
     $output = '';
@@ -165,3 +153,44 @@ add_filter( 'facetwp_pager_html', 'custom_facetwp_pager', 10, 2 );
 /*
 reference: Custom pagination (functions.php) – https://gist.github.com/mgibbs189/9732174
 **/
+
+
+/*--- FIELDS: Relationship Field - Bidirectional (fitya) ---*/
+
+function bidirectional_acf_update_value( $value, $post_id, $field  ) {
+	$field_name = $field['name'];
+	$global_name = 'is_updating_' . $field_name;
+	if( !empty($GLOBALS[ $global_name ]) ) return $value;
+	$GLOBALS[ $global_name ] = 1;
+	if( is_array($value) ) {
+		foreach( $value as $post_id2 ) {
+			$value2 = get_field($field_name, $post_id2, false);
+			if( empty($value2) ) {				
+				$value2 = array();				
+			}
+			if( in_array($post_id, $value2) ) continue;
+			$value2[] = $post_id;
+			update_field($field_name, $value2, $post_id2);			
+		}	
+	}	
+	$old_value = get_field($field_name, $post_id, false);	
+	if( is_array($old_value) ) {
+		foreach( $old_value as $post_id2 ) {
+			if( is_array($value) && in_array($post_id2, $value) ) continue;
+			$value2 = get_field($field_name, $post_id2, false);
+			if( empty($value2) ) continue;
+			$pos = array_search($post_id, $value2);
+			unset( $value2[ $pos] );
+			update_field($field_name, $value2, $post_id2);			
+		}		
+	}
+	$GLOBALS[ $global_name ] = 0;
+    return $value;  
+}
+
+/*
+usage: Turn relationship field to bidirectional relationship
+example: add_filter('acf/update_value/name=channel_rel', 'bidirectional_acf_update_value', 10, 3);
+reference: http://www.advancedcustomfields.com/resources/bidirectional-relationships/
+**/
+
