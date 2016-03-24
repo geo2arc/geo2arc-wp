@@ -1,7 +1,5 @@
 
-/*--------------------------------------------------------------
-# FILTERS: FacetWP Filters (fitya, tgc, ecodomisi, geo2arc)
---------------------------------------------------------------*/
+/*--- # Filters: FacetWP Filters (fitya, tgc, geo2arc) ---*/
 
 /* sort panel */
 #sort-panel {
@@ -43,10 +41,13 @@
 /* filters */
 
 .facetwp-type-slider, 
-.facetwp-type-dropdown,
 .facetwp-facet-type,
 .facetwp-facet-search {
 	margin-bottom: 25px !important;
+}
+
+.facetwp-type-dropdown {
+	margin-bottom: 10px !important;
 }
 
 .facetwp-autocomplete {
@@ -100,7 +101,7 @@
     font-weight: bold;
     text-transform: uppercase;
 }
-.facetwp-depth {
+.facetwp-depth .facetwp-depth {
 	border-left: 1px dotted #adadad;
     padding-left: 5px;
 }
@@ -127,7 +128,7 @@
 /* Checkbox */
 
 .facetwp-type-checkboxes {
-	max-height: initial !important;
+	max-height: none !important;
 }
 
 .facetwp-depth {
