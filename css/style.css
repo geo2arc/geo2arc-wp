@@ -92,7 +92,7 @@
 }
 
 .facet-dropdown .facetwp-type-checkboxes > .facetwp-depth {
-	margin-left: 0;
+	margin-left: 5px;
 }
 
 /* checkbox hierarchy */
@@ -101,9 +101,8 @@
     font-weight: bold;
     text-transform: uppercase;
 }
-.facetwp-depth .facetwp-depth {
+.facetwp-depth {
 	border-left: 1px dotted #adadad;
-    padding-left: 5px;
 }
 
 
