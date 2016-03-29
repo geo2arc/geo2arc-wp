@@ -55,11 +55,28 @@ $(".facet-title").click(function() {
 		}
 })
 
-/*--- # FILTERS: FacetWP Checkbox Parent (tgc) ----*/
+/*--- # FILTERS: Checkbox - Parent add class "has-children" (tgc, geo2arc) ----*/
 
 $(document).on('facetwp-loaded', function() {
 	$('.facetwp-depth').prev().addClass('has-children');
 });
+
+
+/* --- #FILTERS: Selections Box - Bugs (ecodomisi, fitya, tgc, geo2arc) --- **/
+
+wp.hooks.addAction('facetwp/loaded', function() {
+	var datavalue;
+	$('.facetwp-selections li').each(function() {
+		var datavalue = $(this).attr('data-facet');
+		var text = $(this).text().replace('undefined', '' + datavalue + '').replace('_', ' ');
+		$(this).text(text);
+	});
+	
+	/* 	$('.facetwp-selections li[data-facet="instructor"]').each(function() {
+		var text = $(this).text().replace('undefined', 'Instructor');
+		$(this).text(text);
+	}); */
+}, 12);
 
 
 }); //jQuery
