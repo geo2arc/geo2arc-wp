@@ -58,7 +58,7 @@ $(".facet-title").click(function() {
 /*--- # FILTERS: FacetWP Checkbox Parent (tgc) ----*/
 
 $(document).on('facetwp-loaded', function() {
-	$('.facetwp-depth .facetwp-depth').prev().addClass('has-children');
+	$('.facetwp-depth').prev().addClass('has-children');
 });
 
 
