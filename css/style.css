@@ -18,7 +18,8 @@
 /* filter display pages */
 
 .page-template-template-pagewitharticles article.page.hentry {
-	width: 97.8%;
+	width: 100%;
+	overflow: visible;
 }
 
 .facetwp-template {
