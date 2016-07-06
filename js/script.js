@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-/*--- # FILTERS: FacetWP  (fitya, tgc, ecodomisi, geo2arc) ---*/
+/*--- # FILTERS: FacetWP Pre-filter on archive page  (fitya, tgc, ecodomisi, geo2arc) ---*/
 add_filter( 'facetwp_template_use_archive', '__return_true' );
 // https://facetwp.com/documentation/facetwp_template_use_archive/
 
