@@ -86,8 +86,16 @@ usage: get video length from youtube video (stored in unix) and save it to a fie
 example: inside function that saves youtube api video data to custom fields - $new_videolength_value = covsecs($yt_duration);
 **/
 
-/*--- # FILTERS: Sort Panel (fitya, tgc) ---*/
 
+/* FILTERS */
+
+/*--- # FILTERS: FacetWP Pre-filter on archive page  (fitya, tgc, ecodomisi, geo2arc) ---*/
+
+add_filter( 'facetwp_template_use_archive', '__return_true' );
+// https://facetwp.com/documentation/facetwp_template_use_archive/
+
+
+/*--- # FILTERS: Sort Panel (fitya, tgc) ---*/
 
 function filters_sort_panel($atts) {	
 	$sc_atts = shortcode_atts( array(
