@@ -22,9 +22,6 @@
 	overflow: visible;
 }
 
-.facetwp-template {
-	text-align: center;
-}
 
 /* titles */
 
@@ -117,7 +114,8 @@
 
 .facetwp-facet select,
 .facetwp-sort select {
-	display: block;
+	width: 100%;
+    	padding: 4px;
 }
 
 .facetwp-counter {
