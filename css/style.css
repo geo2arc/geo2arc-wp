@@ -93,35 +93,6 @@
 	margin-left: 5px;
 }
 
-/* checkbox hierarchy */
-.facetwp-checkbox.has-children {
-	display: block !important;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.facetwp-depth {
-	border-left: 1px dotted #adadad;
-}
-
-
-/* slider */
-
-.facetwp-type-slider .noUi-connect {
-	/* background: #dedede; */
-}
-
-/* Select */
-
-.facetwp-facet select:not(.hidden),
-.facetwp-sort select:not(.hidden) {
-	width: 100%;
-    	padding: 4px;
-}
-
-.facetwp-counter {
-	display: none;
-}
-
 
 /* Checkbox */
 
@@ -155,3 +126,50 @@
 	color: #fff !important;
     background: #bdbdbd !important;
 }
+
+
+/* checkbox hierarchy */
+.facetwp-checkbox.has-children {
+	display: block !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.facetwp-depth {
+	border-left: 1px dotted #adadad;
+}
+
+
+/* slider */
+
+.facetwp-type-slider .noUi-connect {
+	/* background: #dedede; */
+}
+
+/* Select */
+
+.facetwp-facet select:not(.hidden),
+.facetwp-sort select:not(.hidden) {
+	width: 100%;
+    	padding: 4px;
+}
+
+.facetwp-counter {
+	display: none;
+}
+
+/* fSelect */
+
+.facetwp-type-fselect {
+	margin-bottom: 10px !important;
+}
+
+
+/* Autocomplete */
+.facetwp-type-autocomplete {
+	display: flex;
+}
+
+.facetwp-type-autocomplete .facetwp-autocomplete {
+	padding: 4px 0;
+}
+
