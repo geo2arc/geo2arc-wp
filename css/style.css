@@ -128,7 +128,12 @@
 	margin-bottom: 10px !important;
 }
 
+.facetwp-type-fselect > .fs-wrap {
+	width: 100% !important;
+}
+
 /* Autocomplete */
+
 .facetwp-type-autocomplete {
 	display: flex;
 }
@@ -136,7 +141,6 @@
 .facetwp-type-autocomplete .facetwp-autocomplete {
 	padding: 4px 0;
 }
-
 
 /* Checkbox */
 
@@ -152,7 +156,6 @@
 	background: none !important;
 	padding-left: 0 !important;
 }
-
 
 /* checkbox not types */
 
